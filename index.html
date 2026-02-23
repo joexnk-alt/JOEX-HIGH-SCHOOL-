@@ -5,41 +5,24 @@
     <title>School Central</title>
 </head>
 <body class="bg-light p-3">
-    <div class="container" style="max-width: 500px;">
-        
-        <h2 class="text-primary text-center">School Central</h2>
-        
-        <div class="btn btn-primary w-100 mb-3">{{ status }}</div>
+    <div class="container" style="max-width: 600px;">
+        <h2 class="text-primary text-center mb-4">School Central</h2>
+
+        <div class="btn btn-primary w-100 mb-3">Post New Announcement</div>
 
         <div class="card mb-3">
-            <div class="card-header bg-dark text-white">📢 Announcements</div>
+            <div class="card-header bg-dark text-white">Announcements</div>
             <ul class="list-group list-group-flush">
                 {% for a in announcements %}
                 <li class="list-group-item">
                     <strong>{{ a.title }}</strong><br>
                     <small class="text-muted">{{ a.date }}</small>
+                    <p class="mb-0">{{ a.content }}</p>
                 </li>
                 {% endfor %}
             </ul>
         </div>
-
-        <div class="card">
-            <div class="card-header bg-success text-white">📚 Past Papers</div>
-            <ul class="list-group list-group-flush">
-                {% for p in papers %}
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{ p.subject }} ({{ p.year }})
-                    
-                    {% if p.premium %}
-                        <button class="btn btn-warning btn-sm">Buy $1</button>
-                    {% else %}
-                        <button class="btn btn-outline-primary btn-sm">View</button>
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-
     </div>
 </body>
 </html>
+
