@@ -1,26 +1,29 @@
-// 1. Data Object
+// 1. Data Object (Added an 'image' property to match your <img> tag logic)
 const activities = [
-  { name: 'Football', category: 'Field Sports', img: 'https://via.placeholder.com/50' },
-  { name: 'Netball', category: 'Court Sports', img: 'https://via.placeholder.com/50' },
-  { name: 'Volleyball', category: 'Court Sports', img: 'https://via.placeholder.com/50' }
+    { name: 'Football', category: 'Field', img: 'https://via.placeholder.com/30' },
+    { name: 'Netball', category: 'Court', img: 'https://via.placeholder.com/30' },
+    { name: 'Volleyball', category: 'Court', img: 'https://via.placeholder.com/30' }
 ];
 
 // 2. The Function
 function loadSchoolPortal() {
     // Set the Heading
-    const header = document.getElementById('main-header');
-    if(header) header.innerHTML = "<h1>JOEX HIGH SCHOOL</h1>";
+    const header = document.getElementById('header-container');
+    if (header) {
+        header.innerHTML = "<h1>School Activities Portal</h1>";
+    }
 
     // Populate the Table
-    const tableBody = document.getElementById('activitiesTableBody');
-    if(tableBody) {
+    const tableBody = document.getElementById('activities-table-body');
+    
+    if (tableBody) {
+        // FIX: Added .map() to loop through the array
         tableBody.innerHTML = activities.map(item => `
             <tr>
-                <td><img src="${item.img}" alt="${item.name}" width="50"></td>
-                <td>${item.name}</td>
+                <td><img src="${item.img}" alt="${item.name}" style="margin-right:10px;"> ${item.name}</td>
                 <td>${item.category}</td>
             </tr>
-        `).join('');
+        `).join(''); // Joins the array of strings into one big HTML string
     }
 }
 
