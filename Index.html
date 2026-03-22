@@ -3,37 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JOEX Foundation | Report Card System</title>
+    <title>JOEX Foundation | UACE New Curriculum Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        :root {
-            --joex-primary: #1a237e; /* Professional Navy */
-            --joex-secondary: #0d47a1;
-        }
-        body { background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .sidebar { background: var(--joex-primary); min-height: 100vh; color: white; }
-        .card-header { background: var(--joex-secondary); color: white; font-weight: bold; }
-        .grade-a { color: #2e7d32; font-weight: bold; } /* Green for Success */
-        .joex-logo { width: 50px; height: 50px; border-radius: 50%; background: #fff; margin-bottom: 10px; }
+        :root { --joex-navy: #001f3f; --joex-gold: #ffcc00; }
+        body { background: #f0f2f5; font-family: 'Inter', sans-serif; }
+        .report-header { background: var(--joex-navy); color: white; border-bottom: 5px solid var(--joex-gold); }
+        .table-points { background: #fff; border-radius: 8px; overflow: hidden; }
+        .point-badge { font-size: 1.2rem; padding: 10px 20px; }
+        @media print { .no-print { display: none; } .card { border: none !important; shadow: none !important; } }
     </style>
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="row">
-        <nav class="col-md-2 d-none d-md-block sidebar p-3 text-center">
-            <div class="joex-logo mx-auto"></div>
-            <h5>JOEX FOUNDATION</h5>
-            <hr>
-            <ul class="nav flex-column text-start">
-                <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Dashboard</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link text-white fw-bold text-warning">Student Marks</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link text-white">E-Voting Portal</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Settings</a></li>
-            </ul>
-        </nav>
+<div class="container my-4">
+    <div class="card report-header shadow mb-4">
+        <div class="card-body text-center">
+            <h1 class="display-6 fw-bold">JOEX HIGH SCHOOL</h1>
+            <p class="mb-1">"Empowering Innovation through PEM & ICT"</p>
+            <p class="small text-uppercase">UACE Continuous Assessment Report - 2026</p>
+        </div>
+    </div>
 
-        <main class="col-md-10 p-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <p><strong>Name:</strong> <input type="text" class="form-control d-inline-block w-75" value="JOEX LEAD DEVELOPER"></p>
+                    <p><strong>Combination:</strong> <span class="badge bg-primary">Physics | Entrepreneurship | Mathematics (PEM)</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-end">
+                    <h4>Total Points: <span id="totalPoints" class="badge bg-success point-badge">0</span></h4>
+                    <p class="text-muted small">Max Points: 20 (3 Principals + GP + Sub)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-points shadow-sm">
+        <table class="table table-bordered align-middle text-center mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th rowspan="2">Subject</th>
+                    <th colspan="2">Continuous Assessment (20%)</th>
+                    <th rowspan="2">End Term (80%)</th>
+                    <th rowspan="2">Final Score</th>
+                    <th rowspan="2">Grade</th>
+                    <th rowspan="2">Points</th>
+                </tr>
+                <tr class="small">
+                    <th>Project/AoI</th>
+                    <th>Mid-Term</th>
+                </tr>
+            </thead>
+            <tbody id="marksBody">
+                <tr data-weight="principal">
+                    <td class="text-start fw-bold">Mathematics (P425)</td>
+                    <td><input type="number" class="form-control ca-score" value="18" max="20"></td>
+                    <td><input type="number" class="form-control mt-score" value="85" max="100"></td>
+                    <td><input type="number" class="form-control et-score" value="88" max="100"></td>
+                    <td class="final-score fw-bold">0</td>
+                    <td class="grade">F</td>
+                    <td class="points">0</td>
+                </tr>
+                <tr data-weight="principal">
+                    <td class="text-start fw-bold">Physics (P510)</td>
+                    <td><input type="number" class="form-control ca-score" value="15" max="20"></td>
+                    <td><input type="number" class="form-control mt-score" value="70" max="100"></td>
+                    <td><input type="number" class="form-control et-score" value="75" max="100"></td>
+                    <td class="final-score fw-bold">0</td>
+                    <td class="grade">F</td>
+                    <td class="points">0</td>
+                </tr>
+                <tr data-weight="principal">
+                    <td class="text-start fw-bold">Entrepreneurship (P230)</td>
+                    <td><input type="number" class="form-control ca-score" value="19" max="20"></td>
+                    <td><input type="number" class="form-control mt-score" value="78" max="100"></td>
+                    <td><input type="number" class="form-control et-score" value="80" max="100"></td>
+                    <td class="final-score fw-bold">0</td>
+                    <td class="grade">F</td>
+                    <td class="points">0</td>
+                </tr>
+                <tr data-weight="subsidiary">
+                    <td class="text-start">General Paper (S101)</td>
+                    <td colspan="2" class="text-muted small">N/A</td>
+                    <td><input type="number" class="form-control et-score" value="65" max="100"></td>
+                    <td class="final-score fw-bold">0</td>
+                    <td class="grade">F</td>
+                    <td class="points">0</td>
+                </tr>
+                <tr data-weight="subsidiary">
+                    <td class="text-start">Subsidiary ICT (S850)</td>
+                    <td colspan="2" class="text-muted small">N/A</td>
+                    <td><input type="number" class="form-control et-score" value="75" max="100"></td>
+                    <td class="final-score fw-bold">0</td>
+                    <td class="grade">F</td>
+                    <td class="points">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4 no-print text-center">
+        <button class="btn btn-dark px-5 py-2" onclick="calculateGrades()">Update Calculations</button>
+    </div>
+</div>
+
+<script>
+function calculateGrades() {
+    const rows = document.querySelectorAll('#marksBody tr');
+    let totalPoints = 0;
+
+    rows.forEach(row => {
+        const ca = parseFloat(row.querySelector('.ca-score')?.value || 0);
+        const et = parseFloat(row.querySelector('.et-score')?.value || 0);
+        const weight = row.getAttribute('data-weight');
+        
+        // Calculation Logic: (20% of CA + 80% of End Term)
+        // Note: For subsidiaries, we take 100% of ET for this example
+        let final = (ca > 0) ? (ca + (et * 0.8)) : et;
+        final = Math.round(final);
+        
+        row.querySelector('.final-score').innerText = final;
+
+        let grade = "F";
+        let points = 0;
+
+        // UACE Grading Scale
+        if (final >= 80) { grade = "A"; points = 6; }
+        else if (final >= 75) { grade = "B"; points = 5; }
+        else if (final >= 70) { grade = "C"; points = 4; }
+        else if (final >= 60) { grade = "D"; points = 3; }
+        else if (final >= 50) { grade = "E"; points = 2; }
+        else if (final >= 40) { grade = "O"; points = 1; }
+        else { grade = "F"; points = 0; }
+
+        // Adjust points for Subsidiary/GP (Max 1 point)
+        if (weight === "subsidiary") {
+            points = (final >= 40) ? 1 : 0;
+            grade = (final >= 40) ? "Pass" : "Fail";
+        }
+
+        row.querySelector('.grade').innerText = grade;
+        row.querySelector('.points').innerText = points;
+        totalPoints += points;
+    });
+
+    document.getElementById('totalPoints').innerText = totalPoints;
+}
+
+// Initial calculation on load
+window.onload = calculateGrades;
+</script>
+
+</body>
+</html>
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>Electronic Report Card Application</h2>
                 <button class="btn btn-primary" onclick="window.print()">Print Report</button>
